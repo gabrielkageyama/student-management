@@ -1,5 +1,5 @@
 # api_teste
-edit repo name and description
+edit repo name and description after conclusion
 
 API to exchange information of a camera to a database
 
