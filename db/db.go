@@ -39,3 +39,13 @@ func AddStudent(student Student) error {
 	fmt.Println("Student created with success!")
 	return nil
 }
+
+func GetStudents() ([]Student, error) {
+	db := Init()
+
+	students := []Student{}
+
+	err := db.Find(&students).Error
+
+	return students, err
+}
