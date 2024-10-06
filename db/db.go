@@ -3,18 +3,10 @@ package db
 import (
 	"github.com/rs/zerolog/log"
 
+	"github.com/gabrielkageyama/api_teste1/schemas"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
-
-type Student struct {
-	gorm.Model
-	Name   string `json:"name"`
-	CPF    int    `json:"cpf"`
-	Email  string `json:"email"`
-	Age    int    `json:"age"`
-	Active bool   `json:"registration"`
-}
 
 type StudentHandler struct {
 	DB *gorm.DB
@@ -26,7 +18,7 @@ func Init() *gorm.DB {
 		log.Fatal().Err(err).Msgf("Failed to initialize SQLite: %s", err.Error())
 	}
 
-	db.AutoMigrate(&Student{})
+	db.AutoMigrate(&schemas.Student{})
 
 	return db
 }
@@ -35,7 +27,7 @@ func NewStundentHandler(db *gorm.DB) *StudentHandler {
 	return &StudentHandler{DB: db}
 }
 
-func (s *StudentHandler) AddStudent(student Student) error {
+func (s *StudentHandler) AddStudent(student schemas.Student) error {
 
 	if result := s.DB.Create(&student); result.Error != nil {
 		log.Error().Msg("Failed to create student!")
@@ -46,29 +38,29 @@ func (s *StudentHandler) AddStudent(student Student) error {
 	return nil
 }
 
-func (s *StudentHandler) GetStudents() ([]Student, error) {
+func (s *StudentHandler) GetStudents() ([]schemas.Student, error) {
 
-	students := []Student{}
+	students := []schemas.Student{}
 
 	err := s.DB.Find(&students).Error
 
 	return students, err
 }
 
-func (s *StudentHandler) GetStudent(id int) (Student, error) {
+func (s *StudentHandler) GetStudent(id int) (schemas.Student, error) {
 
-	var student Student
+	var student schemas.Student
 	err := s.DB.First(&student, id)
 
 	return student, err.Error
 }
 
-func (s *StudentHandler) UpdateStudent(updateStudent Student) error {
+func (s *StudentHandler) UpdateStudent(updateStudent schemas.Student) error {
 
 	return s.DB.Save(&updateStudent).Error
 }
 
-func (s *StudentHandler) DeleteStudent(deleteStudent Student) error {
+func (s *StudentHandler) DeleteStudent(deleteStudent schemas.Student) error {
 
 	return s.DB.Delete(&deleteStudent).Error
 }

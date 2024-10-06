@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gabrielkageyama/api_teste1/db"
+	"github.com/gabrielkageyama/api_teste1/schemas"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
@@ -21,7 +21,7 @@ func (api *API) getStudents(c echo.Context) error {
 }
 
 func (api *API) createStudent(c echo.Context) error {
-	student := db.Student{}
+	student := schemas.Student{}
 
 	if err := c.Bind(&student); err != nil {
 		return err
@@ -57,7 +57,7 @@ func (api *API) updateStudent(c echo.Context) error {
 		return c.String(http.StatusInternalServerError, "Failed to get Student ID")
 	}
 
-	requestedStudent := db.Student{}
+	requestedStudent := schemas.Student{}
 	if err := c.Bind(&requestedStudent); err != nil {
 		return err
 	}
@@ -79,7 +79,7 @@ func (api *API) updateStudent(c echo.Context) error {
 	return c.JSON(http.StatusOK, student)
 }
 
-func updateStudentInfo(requestedStudent, updateStudent db.Student) db.Student {
+func updateStudentInfo(requestedStudent, updateStudent schemas.Student) schemas.Student {
 	if requestedStudent.Name != "" {
 		updateStudent.Name = requestedStudent.Name
 	}
