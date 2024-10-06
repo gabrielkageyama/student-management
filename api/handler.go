@@ -7,6 +7,7 @@ import (
 
 	"github.com/gabrielkageyama/api_teste1/schemas"
 	"github.com/labstack/echo/v4"
+	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 )
 
@@ -17,21 +18,46 @@ func (api *API) getStudents(c echo.Context) error {
 		return c.String(http.StatusNotFound, "Failed to get Students")
 	}
 
-	return c.JSON(http.StatusOK, students)
+	active := c.QueryParam("active")
+	if active != "" {
+		act, err := strconv.ParseBool(active)
+		if err != nil {
+			log.Error().Err(err).Msgf("[api] error to parse boolean")
+			return c.String(http.StatusInternalServerError, "Failed to parse boolean")
+		}
+
+		students, err = api.DB.GetFilteredStudents(act)
+	}
+
+	listOfStudents := map[string][]schemas.StudentResponse{"students": schemas.NewResponse(students)}
+
+	return c.JSON(http.StatusOK, listOfStudents)
 }
 
 func (api *API) createStudent(c echo.Context) error {
-	student := schemas.Student{}
-
-	if err := c.Bind(&student); err != nil {
+	studentReq := StudentRequest{}
+	if err := c.Bind(&studentReq); err != nil {
 		return err
+	}
+
+	if err := studentReq.Validate(); err != nil {
+		log.Error().Err(err).Msgf("[api] error validating struct")
+		return c.String(http.StatusBadRequest, "Error validating student")
+	}
+
+	student := schemas.Student{
+		Name:   studentReq.Name,
+		Email:  studentReq.Email,
+		CPF:    studentReq.CPF,
+		Age:    studentReq.Age,
+		Active: *studentReq.Active,
 	}
 
 	if err := api.DB.AddStudent(student); err != nil {
 		return c.String(http.StatusInternalServerError, "Error to create student")
 	}
 
-	return c.String(http.StatusOK, "Create student")
+	return c.JSON(http.StatusOK, student)
 }
 
 func (api *API) getStudentInfo(c echo.Context) error {
