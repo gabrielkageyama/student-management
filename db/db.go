@@ -1,8 +1,7 @@
 package db
 
 import (
-	"fmt"
-	"log"
+	"github.com/rs/zerolog/log"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -24,7 +23,7 @@ type StudentHandler struct {
 func Init() *gorm.DB {
 	db, err := gorm.Open(sqlite.Open("student.db"), &gorm.Config{})
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatal().Err(err).Msgf("Failed to initialize SQLite: %s", err.Error())
 	}
 
 	db.AutoMigrate(&Student{})
@@ -39,10 +38,11 @@ func NewStundentHandler(db *gorm.DB) *StudentHandler {
 func (s *StudentHandler) AddStudent(student Student) error {
 
 	if result := s.DB.Create(&student); result.Error != nil {
+		log.Error().Msg("Failed to create student!")
 		return result.Error
 	}
 
-	fmt.Println("Student created with success!")
+	log.Info().Msg("Student created!")
 	return nil
 }
 
