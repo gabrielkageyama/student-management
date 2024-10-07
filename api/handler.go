@@ -22,7 +22,6 @@ import (
 // @Sucess 200 {object} schemas.StudentResponse
 // @Failure 404
 // @Router /students [get]
-
 func (api *API) getStudents(c echo.Context) error {
 
 	students, err := api.DB.GetStudents()

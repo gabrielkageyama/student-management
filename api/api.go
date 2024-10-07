@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/gabrielkageyama/api_teste1/db"
 
+	_ "github.com/gabrielkageyama/api_teste1/docs"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
