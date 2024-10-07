@@ -1,0 +1,116 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/students": {
+            "post": {
+                "description": "Create a new entity asking all parameters of the student struct",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Create entities",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Registration",
+                        "name": "register",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/students/:id": {
+            "get": {
+                "description": "Retrive information about a specific entity",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Gets the information about entities",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Registration",
+                        "name": "register",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "description": "Update new information about a specific entity",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Update information about entities",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Registration",
+                        "name": "register",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a specific entity",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Delete entities",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Registration",
+                        "name": "register",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    }
+}

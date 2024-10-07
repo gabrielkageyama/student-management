@@ -1,0 +1,74 @@
+info:
+  contact: {}
+paths:
+  /students:
+    post:
+      consumes:
+      - application/json
+      description: Create a new entity asking all parameters of the student struct
+      parameters:
+      - description: Registration
+        in: path
+        name: register
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+      summary: Create entities
+      tags:
+      - students
+  /students/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a specific entity
+      parameters:
+      - description: Registration
+        in: path
+        name: register
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+      summary: Delete entities
+      tags:
+      - students
+    get:
+      consumes:
+      - application/json
+      description: Retrive information about a specific entity
+      parameters:
+      - description: Registration
+        in: path
+        name: register
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+      summary: Gets the information about entities
+      tags:
+      - students
+    put:
+      consumes:
+      - application/json
+      description: Update new information about a specific entity
+      parameters:
+      - description: Registration
+        in: path
+        name: register
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+      summary: Update information about entities
+      tags:
+      - students
+swagger: "2.0"

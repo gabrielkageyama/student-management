@@ -11,6 +11,18 @@ import (
 	"gorm.io/gorm"
 )
 
+// getStudents godoc
+//
+// @Summary Get a list of entities
+// @Description Retrieve entities details
+// @Tags students
+// @Accept json
+// @produce json
+// @Param register path 	int		false 	 "Registration"
+// @Sucess 200 {object} schemas.StudentResponse
+// @Failure 404
+// @Router /students [get]
+
 func (api *API) getStudents(c echo.Context) error {
 
 	students, err := api.DB.GetStudents()
@@ -34,6 +46,17 @@ func (api *API) getStudents(c echo.Context) error {
 	return c.JSON(http.StatusOK, listOfStudents)
 }
 
+// createStudent godoc
+//
+// @Summary Create entities
+// @Description Create a new entity asking all parameters of the student struct
+// @Tags students
+// @Accept json
+// @produce json
+// @Param register path 	int		false 	 "Registration"
+// @Sucess 200 {object} schemas.StudentResponse
+// @Failure 404
+// @Router /students [post]
 func (api *API) createStudent(c echo.Context) error {
 	studentReq := StudentRequest{}
 	if err := c.Bind(&studentReq); err != nil {
@@ -60,6 +83,17 @@ func (api *API) createStudent(c echo.Context) error {
 	return c.JSON(http.StatusOK, student)
 }
 
+// getStudentInfo godoc
+//
+// @Summary Gets the information about entities
+// @Description Retrive information about a specific entity
+// @Tags students
+// @Accept json
+// @produce json
+// @Param register path 	int		false 	 "Registration"
+// @Sucess 200 {object} schemas.StudentResponse
+// @Failure 404
+// @Router /students/:id [get]
 func (api *API) getStudentInfo(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -77,6 +111,17 @@ func (api *API) getStudentInfo(c echo.Context) error {
 	return c.JSON(http.StatusOK, student)
 }
 
+// updateStudent godoc
+//
+// @Summary Update information about entities
+// @Description Update new information about a specific entity
+// @Tags students
+// @Accept json
+// @produce json
+// @Param register path 	int		false 	 "Registration"
+// @Sucess 200 {object} schemas.StudentResponse
+// @Failure 404
+// @Router /students/:id [put]
 func (api *API) updateStudent(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -125,6 +170,17 @@ func updateStudentInfo(requestedStudent, updateStudent schemas.Student) schemas.
 	return updateStudent
 }
 
+// deleteStudent godoc
+//
+// @Summary Delete entities
+// @Description Delete a specific entity
+// @Tags students
+// @Accept json
+// @produce json
+// @Param register path 	int		false 	 "Registration"
+// @Sucess 200 {object} schemas.StudentResponse
+// @Failure 404
+// @Router /students/:id [delete]
 func (api *API) deleteStudent(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
