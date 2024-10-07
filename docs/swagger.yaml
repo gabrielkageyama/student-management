@@ -2,6 +2,23 @@ info:
   contact: {}
 paths:
   /students:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve entities details
+      parameters:
+      - description: Registration
+        in: path
+        name: register
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+      summary: Get a list of entities
+      tags:
+      - students
     post:
       consumes:
       - application/json
@@ -16,7 +33,7 @@ paths:
       responses:
         "404":
           description: Not Found
-      summary: Create entities
+      summary: Create entity
       tags:
       - students
   /students/:id:
@@ -34,7 +51,7 @@ paths:
       responses:
         "404":
           description: Not Found
-      summary: Delete entities
+      summary: Delete entity
       tags:
       - students
     get:
@@ -51,7 +68,7 @@ paths:
       responses:
         "404":
           description: Not Found
-      summary: Gets the information about entities
+      summary: Get entity by ID
       tags:
       - students
     put:
@@ -68,7 +85,7 @@ paths:
       responses:
         "404":
           description: Not Found
-      summary: Update information about entities
+      summary: Update entity
       tags:
       - students
 swagger: "2.0"

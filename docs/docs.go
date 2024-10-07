@@ -16,8 +16,8 @@ const docTemplate = `{
     "basePath": "{{.BasePath}}",
     "paths": {
         "/students": {
-            "post": {
-                "description": "Create a new entity asking all parameters of the student struct",
+            "get": {
+                "description": "Retrieve entities details",
                 "consumes": [
                     "application/json"
                 ],
@@ -27,7 +27,33 @@ const docTemplate = `{
                 "tags": [
                     "students"
                 ],
-                "summary": "Create entities",
+                "summary": "Get a list of entities",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Registration",
+                        "name": "register",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new entity with all parameters of the student struct",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Create entity",
                 "parameters": [
                     {
                         "type": "integer",
@@ -55,7 +81,7 @@ const docTemplate = `{
                 "tags": [
                     "students"
                 ],
-                "summary": "Gets the information about entities",
+                "summary": "Get entity by ID",
                 "parameters": [
                     {
                         "type": "integer",
@@ -81,7 +107,7 @@ const docTemplate = `{
                 "tags": [
                     "students"
                 ],
-                "summary": "Update information about entities",
+                "summary": "Update entity",
                 "parameters": [
                     {
                         "type": "integer",
@@ -107,7 +133,7 @@ const docTemplate = `{
                 "tags": [
                     "students"
                 ],
-                "summary": "Delete entities",
+                "summary": "Delete entity",
                 "parameters": [
                     {
                         "type": "integer",

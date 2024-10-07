@@ -18,7 +18,7 @@ import (
 // @Tags students
 // @Accept json
 // @produce json
-// @Param register path 	int		false 	 "Registration"
+// @Param register    path    int    false    "Registration"
 // @Sucess 200 {object} schemas.StudentResponse
 // @Failure 404
 // @Router /students [get]
@@ -47,12 +47,12 @@ func (api *API) getStudents(c echo.Context) error {
 
 // createStudent godoc
 //
-// @Summary Create entities
-// @Description Create a new entity asking all parameters of the student struct
+// @Summary Create entity
+// @Description Create a new entity with all parameters of the student struct
 // @Tags students
 // @Accept json
 // @produce json
-// @Param register path 	int		false 	 "Registration"
+// @Param register    path    int    false    "Registration"
 // @Sucess 200 {object} schemas.StudentResponse
 // @Failure 404
 // @Router /students [post]
@@ -84,12 +84,12 @@ func (api *API) createStudent(c echo.Context) error {
 
 // getStudentInfo godoc
 //
-// @Summary Gets the information about entities
+// @Summary Get entity by ID
 // @Description Retrive information about a specific entity
 // @Tags students
 // @Accept json
 // @produce json
-// @Param register path 	int		false 	 "Registration"
+// @Param register    path    int    false    "Registration"
 // @Sucess 200 {object} schemas.StudentResponse
 // @Failure 404
 // @Router /students/:id [get]
@@ -112,12 +112,12 @@ func (api *API) getStudentInfo(c echo.Context) error {
 
 // updateStudent godoc
 //
-// @Summary Update information about entities
+// @Summary Update entity
 // @Description Update new information about a specific entity
 // @Tags students
 // @Accept json
 // @produce json
-// @Param register path 	int		false 	 "Registration"
+// @Param register    path    int    false    "Registration"
 // @Sucess 200 {object} schemas.StudentResponse
 // @Failure 404
 // @Router /students/:id [put]
@@ -171,12 +171,12 @@ func updateStudentInfo(requestedStudent, updateStudent schemas.Student) schemas.
 
 // deleteStudent godoc
 //
-// @Summary Delete entities
+// @Summary Delete entity
 // @Description Delete a specific entity
 // @Tags students
 // @Accept json
 // @produce json
-// @Param register path 	int		false 	 "Registration"
+// @Param register    path    int    false    "Registration"
 // @Sucess 200 {object} schemas.StudentResponse
 // @Failure 404
 // @Router /students/:id [delete]
