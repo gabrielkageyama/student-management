@@ -1,7 +1,6 @@
-# api_teste
-edit repo name and description after conclusion
+# api_entities_management
 
-API to exchange information of a camera to a database
+API to manage entities into a database (students in this case)
 
 Routes:
 - GET /students - List all students
